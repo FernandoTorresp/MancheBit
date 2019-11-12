@@ -5,12 +5,14 @@ public class Pieza {
 	private String _codigo;
 	private int _disponibilidad;
 	private String _nombre;
+	private int _coste;
 	
-	public Pieza(String _codigo, int _disponibilidad, String _nombre) {
+	public Pieza(String _codigo, int _disponibilidad, String _nombre, int _coste) {
 		super();
 		this._codigo = _codigo;
 		this._disponibilidad = _disponibilidad;
 		this._nombre = _nombre;
+		this._coste = _coste;
 	}
 	
 	public String get_codigo() {
@@ -35,6 +37,14 @@ public class Pieza {
 	
 	public void set_nombre(String _nombre) {
 		this._nombre = _nombre;
+	}
+
+	public int get_coste() {
+		return _coste;
+	}
+	
+	public void set_coste(int _coste) {
+		this._coste = _coste;
 	}
 	
 }
