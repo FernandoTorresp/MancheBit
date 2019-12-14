@@ -59,5 +59,16 @@ public class TestCuentaConFixtures extends TestCase {
 			fail("Excepción inesperada en setUp(): " + e);
 		}
 	}
+	
+	@Test
+	public void testRetiradaSinSaldo() {
+		try {
+			this.cuentaPepe.retirar(2000);
+			fail("Esperaba SaldoInsuficienteException");
+		} catch (ImporteInvalidoException e) {
+			fail("Se ha producido ImporteInvalidoException");
+		} catch (SaldoInsuficienteException e) {
+		}
+	}
 
 }
