@@ -24,7 +24,6 @@ import junit.framework.TestCase;
 public class TestCliente extends TestCase {
 	
 	private Cliente pepe;
-	long id = 054321;
 	
 	@Before
 	public void setUp() {
@@ -37,35 +36,6 @@ public class TestCliente extends TestCase {
 		
 		this.pepe = new Cliente("12345X", "Pepe", "Pérez"); this.pepe.insert();
 	}
-	
-	
-	@Test
-	public void testCambioNombreApellidosOK() {
-		try {
-			
-			pepe.setId(id);
-			pepe.setNif("12346X");
-			pepe.setNombre("José");
-			pepe.setApellidos("Gómez");		
-			
-		}catch(Exception e) {
-			fail("Excepción inesperada " + e.getMessage());
-		}
 		
-	}
-	
-	@Test
-	public void testObtenerNombreApellidosOK() {
-		try {
-			
-			pepe.getNombre();
-			pepe.getApellidos();
-			
-		}catch(Exception e) {
-			fail("Excepción intesperada " + e.getMessage());
-		}
-		
-	}
-	
 
 }
