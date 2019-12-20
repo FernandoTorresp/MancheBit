@@ -21,10 +21,9 @@ import junit.framework.TestCase;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestDebito extends TestCase{
-	private Cuenta cuentaPepe, cuentaAna;
-	private Cliente pepe, ana;
-	private TarjetaDebito tdPepe, tdAna;
-	private TarjetaCredito tcPepe, tcAna;
+	private Cuenta cuentaPepe;
+	private Cliente pepe;
+	private TarjetaDebito tdPepe;
 
 	@Before
 	public void setUp() {
@@ -36,50 +35,90 @@ public class TestDebito extends TestCase{
 		Manager.getClienteDAO().deleteAll();
 		
 		this.pepe = new Cliente("12345X", "Pepe", "Pérez"); this.pepe.insert();
-		this.ana = new Cliente("98765F", "Ana", "López"); this.ana.insert();
-		this.cuentaPepe = new Cuenta(1); this.cuentaAna = new Cuenta(2);
+		this.cuentaPepe = new Cuenta(1);
 		try {
 			this.cuentaPepe.addTitular(pepe); this.cuentaPepe.insert(); this.cuentaPepe.ingresar(1000);
-			this.cuentaAna.addTitular(ana); this.cuentaAna.insert(); this.cuentaAna.ingresar(5000);
-			this.tcPepe = this.cuentaPepe.emitirTarjetaCredito(pepe.getNif(), 2000);
-			this.tcAna = this.cuentaAna.emitirTarjetaCredito(ana.getNif(), 10000);
 			this.tdPepe = this.cuentaPepe.emitirTarjetaDebito(pepe.getNif());
-			this.tdAna = this.cuentaAna.emitirTarjetaDebito(ana.getNif());
-			
-			this.tcPepe.cambiarPin(tcPepe.getPin(), 1234);
-			this.tcAna.cambiarPin(tcAna.getPin(), 1234);
 			this.tdPepe.cambiarPin(tdPepe.getPin(), 1234);
-			this.tdAna.cambiarPin(tdAna.getPin(), 1234);
 		}
 		catch (Exception e) {
 			fail("Excepción inesperada en setUp(): " + e);
 		}
 	}
 	
+	
 	@Test
-	public void testCompraConTD() {
+	public void testCompraConTDSaldoInsuficiente() {
 		try {
-			tdPepe.comprar(1234,200);
-			assertTrue(this.cuentaPepe.getSaldo()==800);
+			tdPepe.comprar(1234,1001);
+			fail("Esperaba SaldoInsuficienteException");
+		} catch (SaldoInsuficienteException e) {
 		} catch (Exception e) {
 			fail("Excepción inesperada: " + e.getMessage());
 		}
 	}
 	
 	@Test
-	public void testSacarDineroConTD() {
+	public void testCompraConTDImporteIncorrecto() {
 		try {
-			tdPepe.sacarDinero(1234,900);
-			assertTrue(this.cuentaPepe.getSaldo()==100);
+			tdPepe.comprar(1234,-1);
+			fail("Esperaba ImporteInvalidoException");
+		} catch (ImporteInvalidoException e) {
 		} catch (Exception e) {
 			fail("Excepción inesperada: " + e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testCompraConTDPinIncorrecto() {
+		try {
+			tdPepe.comprar(234,999);
+			fail("Esperaba PinInvalidoException");
+		} catch (PinInvalidoException e) {
+		} catch (Exception e) {
+			fail("Excepción inesperada: " + e.getMessage());
+		}
+	}
+	
+	
+	@Test
+	public void testSacarDineroConTDSaldoInsuficiente() {
+		try {
+			tdPepe.sacarDinero(1234,1001);
+			fail("Esperaba SaldoInsuficienteException");
+		} catch (SaldoInsuficienteException e) {
+		} catch (Exception e) {
+			fail("Excepción inesperada: " + e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testSacarDineroConTDImporteIncorrecto() {
+		try {
+			tdPepe.sacarDinero(1234,-1);
+			fail("Esperaba ImporteInvalidoException");
+		} catch (ImporteInvalidoException e) {
+		} catch (Exception e) {
+			fail("Excepción inesperada: " + e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testSacarDineroConTDPinIncorrecto() {
+		try {
+			tdPepe.sacarDinero(234,999);
+			fail("Esperaba PinInvalidoException");
+		} catch (PinInvalidoException e) {
+		} catch (Exception e) {
+			fail("Excepción inesperada: " + e.getMessage());
+		}
+	}
+	
 	
 	@Test
 	public void testRetiradaDebitoSinSaldo() {
 		try {
-			int token=this.tdPepe.comprarPorInternet(1234, 2000);
+			int token=this.tdPepe.comprarPorInternet(1234, 1001);
 			tdPepe.confirmarCompraPorInternet(token);
 			fail("Esperaba SaldoInsuficienteException");
 		} catch (SaldoInsuficienteException e) {
@@ -87,6 +126,31 @@ public class TestDebito extends TestCase{
 			fail("Excepción inesperada");
 		}
 	}
+	
+	@Test
+	public void testRetiradaDebitoPinInvalido() {
+		try {
+			int token=this.tdPepe.comprarPorInternet(234, 999);
+			tdPepe.confirmarCompraPorInternet(token);
+			fail("Esperaba PinInvalidoException");
+		} catch (PinInvalidoException e) {
+		} catch (Exception e) {
+			fail("Excepción inesperada");
+		}
+	}
+	
+	@Test
+	public void testRetiradaDebitoSaldoIncorrecto() {
+		try {
+			int token=this.tdPepe.comprarPorInternet(1234, -1);
+			tdPepe.confirmarCompraPorInternet(token);
+			fail("Esperaba ImporteInvalidoException");
+		} catch (ImporteInvalidoException e) {
+		} catch (Exception e) {
+			fail("Excepción inesperada");
+		}
+	}
+	
 	
 	@Test
 	public void testTokenInvalido() {
@@ -98,6 +162,27 @@ public class TestDebito extends TestCase{
 		catch (TokenInvalidoException e) {
 		}
 		catch (Exception e) {
+			fail("Excepción inesperada");
+		}
+	}
+	
+	
+	@Test
+	public void testCambiarPin() {
+		try {
+			this.tdPepe.cambiarPin(1234, 2345);
+		}catch (Exception e) {
+			fail("Excepción inesperada");
+		}
+	}
+	
+	@Test
+	public void testCambiarPinInvalido() {
+		try {
+			this.tdPepe.cambiarPin(2345, 2345);
+			fail("Esperaba PinInvalidoException");
+		}catch (PinInvalidoException e) {
+		}catch (Exception e) {
 			fail("Excepción inesperada");
 		}
 	}
@@ -127,17 +212,6 @@ public class TestDebito extends TestCase{
 		} catch (TarjetaBloqueadaException e) {
 		} catch (Exception e) {
 			fail("Esperaba TarjetaBloqueadaException");
-		}
-	}
-	
-	@Test
-	public void testCambiarPin() {
-		try {
-			this.tdPepe.cambiarPin(2345, 2345);
-			fail("Esperaba PinInvalidoException");
-		}catch (PinInvalidoException e) {
-		}catch (Exception e) {
-			fail("Excepción inesperada");
 		}
 	}
 
