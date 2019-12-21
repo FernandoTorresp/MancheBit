@@ -52,7 +52,14 @@ public class TestCredito extends TestCase {
 		}
 	}
 	
-	
+	@Test
+	public void testSacarDineroTodoOK() {
+		try {
+			tcPepe.sacarDinero(1234, 10);
+		}catch(Exception e) {
+			fail("No se esperaba excepción");
+		}
+	}
 
 	
 	@Test
@@ -132,6 +139,6 @@ public class TestCredito extends TestCase {
 		} catch (Exception e) {
 			fail("Esperaba TarjetaBloqueadaException");
 		}
-}
+	}
 	
 }
