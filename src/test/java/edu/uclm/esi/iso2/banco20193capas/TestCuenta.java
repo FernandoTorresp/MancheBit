@@ -203,6 +203,4 @@ public class TestCuenta extends TestCase {
 			fail("Excepción inesperada: " + e.getMessage());
 		}
 	}
-	
-	
 }
