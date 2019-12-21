@@ -127,7 +127,7 @@ public class TestCuentaN extends TestCase {
 			cuentaPepe.insert();
 			tarjeta=cuentaPepe.emitirTarjetaCredito("12348X", 232);
 			fail("Esperaba CuentaNoAutorizadaException");
-		} catch (ClienteNoAutorizadoException e) {
+		} catch (ClienteNoEncontradoException e) {
 		} catch (Exception e) {
 			System.out.println(e);
 			fail("Se ha lanzado una excepción inesperada: " + e);
@@ -148,7 +148,7 @@ public class TestCuentaN extends TestCase {
 			cuentaPepe.insert();
 			tarjeta=cuentaPepe.emitirTarjetaCredito("12348X", 0);
 			fail("Esperaba CuentaNoAutorizadaException");
-		} catch (ClienteNoAutorizadoException e) {
+		} catch (ClienteNoEncontradoException e) {
 		} catch (Exception e) {
 			System.out.println(e);
 			fail("Se ha lanzado una excepción inesperada: " + e);
