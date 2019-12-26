@@ -15,7 +15,7 @@ public class ClienteNoEncontradoException extends Exception {
      * @param nif
      *        the nif
      */
-    public ClienteNoEncontradoException(String nif) {
+    public ClienteNoEncontradoException(final String nif) {
         super("No se encuentra el cliente con NIF " + nif);
     }
 }

@@ -24,20 +24,20 @@ public class Lanzadora {
      * @throws Exception
      *         the exception
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(final String[] args) throws Exception {
         SpringApplication.run(Lanzadora.class, args);
 
         try {
-            Cliente pepe = new Cliente("12345X", "Pepe", "Pérez");
+            final Cliente pepe = new Cliente("12345X", "Pepe", "Pérez");
             pepe.insert();
 
-            Cuenta cuenta = new Cuenta();
+            final Cuenta cuenta = new Cuenta();
             cuenta.addTitular(pepe);
             cuenta.insert();
 
             cuenta.ingresar(1000);
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             e.printStackTrace();
         }
 

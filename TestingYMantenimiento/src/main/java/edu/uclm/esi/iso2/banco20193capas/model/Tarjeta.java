@@ -64,10 +64,11 @@ public abstract class Tarjeta {
     public Tarjeta() {
         activa = true;
         this.intentos = 0;
-        SecureRandom dado = new SecureRandom();
+        final SecureRandom dado = new SecureRandom();
         pin = 0;
-        for (int i = 0; i <= 3; i++)
+        for (int i = 0; i <= 3; i++) {
             pin = (int) (pin + dado.nextInt(10) * Math.pow(10, i));
+        }
     }
 
     /**
@@ -80,14 +81,16 @@ public abstract class Tarjeta {
      * @throws PinInvalidoException
      *         the pin invalido exception
      */
-    protected void comprobar(int pin)
+    protected void comprobar(final int pin)
             throws TarjetaBloqueadaException, PinInvalidoException {
-        if (!this.isActiva())
+        if (!this.isActiva()) {
             throw new TarjetaBloqueadaException();
+        }
         if (this.pin != pin) {
             this.intentos++;
-            if (intentos == 3)
+            if (intentos == 3) {
                 bloquear();
+            }
             throw new PinInvalidoException();
         }
     }
@@ -114,7 +117,7 @@ public abstract class Tarjeta {
      * @throws PinInvalidoException
      *         Si el pin que se introdujo es inválido
      */
-    public void confirmarCompraPorInternet(int token)
+    public void confirmarCompraPorInternet(final int token)
             throws TokenInvalidoException, ImporteInvalidoException,
             SaldoInsuficienteException, TarjetaBloqueadaException,
             PinInvalidoException {
@@ -145,7 +148,7 @@ public abstract class Tarjeta {
      * @param id
      *        the new id
      */
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -164,7 +167,7 @@ public abstract class Tarjeta {
      * @param pin
      *        the new pin
      */
-    public void setPin(Integer pin) {
+    public void setPin(final Integer pin) {
         this.pin = pin;
     }
 
@@ -183,7 +186,7 @@ public abstract class Tarjeta {
      * @param titular
      *        the new titular
      */
-    public void setTitular(Cliente titular) {
+    public void setTitular(final Cliente titular) {
         this.titular = titular;
     }
 
@@ -202,7 +205,7 @@ public abstract class Tarjeta {
      * @param cuenta
      *        the new cuenta
      */
-    public void setCuenta(Cuenta cuenta) {
+    public void setCuenta(final Cuenta cuenta) {
         this.cuenta = cuenta;
     }
 
@@ -221,7 +224,7 @@ public abstract class Tarjeta {
      * @param activa
      *        the new activa
      */
-    public void setActiva(Boolean activa) {
+    public void setActiva(final Boolean activa) {
         this.activa = activa;
     }
 

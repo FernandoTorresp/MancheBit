@@ -15,7 +15,7 @@ public class ImporteInvalidoException extends Exception {
      * @param importe
      *        the importe
      */
-    public ImporteInvalidoException(double importe) {
+    public ImporteInvalidoException(final double importe) {
         super("El importe " + importe + " no es válido para esta operación");
     }
 }

@@ -17,7 +17,7 @@ public class ClienteNoAutorizadoException extends Exception {
      * @param id
      *        the id
      */
-    public ClienteNoAutorizadoException(String nif, Long id) {
+    public ClienteNoAutorizadoException(final String nif, final Long id) {
         super("El cliente con NIF " + nif
                 + " no está autorizado para operar en la cuenta " + id);
     }

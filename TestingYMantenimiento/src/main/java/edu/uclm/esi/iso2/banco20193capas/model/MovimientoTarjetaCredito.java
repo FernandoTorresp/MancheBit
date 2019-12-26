@@ -51,8 +51,8 @@ public class MovimientoTarjetaCredito {
      * @param concepto
      *        the concepto
      */
-    public MovimientoTarjetaCredito(TarjetaCredito tarjeta, double importe,
-            String concepto) {
+    public MovimientoTarjetaCredito(final TarjetaCredito tarjeta,
+            final double importe, final String concepto) {
         this.importe = importe;
         this.concepto = concepto;
         this.tarjeta = tarjeta;
@@ -73,7 +73,7 @@ public class MovimientoTarjetaCredito {
      * @param id
      *        the new id
      */
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -92,7 +92,7 @@ public class MovimientoTarjetaCredito {
      * @param tarjeta
      *        the new tarjeta
      */
-    public void setTarjeta(TarjetaCredito tarjeta) {
+    public void setTarjeta(final TarjetaCredito tarjeta) {
         this.tarjeta = tarjeta;
     }
 
@@ -111,7 +111,7 @@ public class MovimientoTarjetaCredito {
      * @param importe
      *        the new importe
      */
-    public void setImporte(double importe) {
+    public void setImporte(final double importe) {
         this.importe = importe;
     }
 
@@ -130,7 +130,7 @@ public class MovimientoTarjetaCredito {
      * @param concepto
      *        the new concepto
      */
-    public void setConcepto(String concepto) {
+    public void setConcepto(final String concepto) {
         this.concepto = concepto;
     }
 
@@ -149,7 +149,7 @@ public class MovimientoTarjetaCredito {
      * @param liquidado
      *        the new liquidado
      */
-    public void setLiquidado(boolean liquidado) {
+    public void setLiquidado(final boolean liquidado) {
         this.liquidado = liquidado;
     }
 

@@ -23,7 +23,7 @@ public class Compra {
      * @param token
      *        the token
      */
-    public Compra(double importe, int token) {
+    public Compra(final double importe, final int token) {
         this.importe = importe;
         this.token = token;
     }
@@ -43,7 +43,7 @@ public class Compra {
      * @param importe
      *        the new importe
      */
-    public void setImporte(double importe) {
+    public void setImporte(final double importe) {
         this.importe = importe;
     }
 
@@ -62,7 +62,7 @@ public class Compra {
      * @param token
      *        the new token
      */
-    public void setToken(int token) {
+    public void setToken(final int token) {
         this.token = token;
     }
 

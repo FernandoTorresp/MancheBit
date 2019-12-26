@@ -48,7 +48,8 @@ public class MovimientoCuenta {
      * @param concepto
      *        the concepto
      */
-    public MovimientoCuenta(Cuenta cuenta, double importe, String concepto) {
+    public MovimientoCuenta(final Cuenta cuenta, final double importe,
+            final String concepto) {
         this.importe = importe;
         this.concepto = concepto;
         this.cuenta = cuenta;
@@ -69,7 +70,7 @@ public class MovimientoCuenta {
      * @param id
      *        the new id
      */
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -88,7 +89,7 @@ public class MovimientoCuenta {
      * @param cuenta
      *        the new cuenta
      */
-    public void setCuenta(Cuenta cuenta) {
+    public void setCuenta(final Cuenta cuenta) {
         this.cuenta = cuenta;
     }
 
@@ -107,7 +108,7 @@ public class MovimientoCuenta {
      * @param importe
      *        the new importe
      */
-    public void setImporte(double importe) {
+    public void setImporte(final double importe) {
         this.importe = importe;
     }
 
@@ -126,7 +127,7 @@ public class MovimientoCuenta {
      * @param concepto
      *        the new concepto
      */
-    public void setConcepto(String concepto) {
+    public void setConcepto(final String concepto) {
         this.concepto = concepto;
     }
 }

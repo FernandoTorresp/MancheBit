@@ -49,7 +49,8 @@ public class Cliente {
      * @param apellidos
      *        Apellidos del cliente
      */
-    public Cliente(String nif, String nombre, String apellidos) {
+    public Cliente(final String nif, final String nombre,
+            final String apellidos) {
         this.nif = nif;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -70,7 +71,7 @@ public class Cliente {
      * @param id
      *        the new id
      */
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -89,7 +90,7 @@ public class Cliente {
      * @param nif
      *        the new nif
      */
-    public void setNif(String nif) {
+    public void setNif(final String nif) {
         this.nif = nif;
     }
 
@@ -108,7 +109,7 @@ public class Cliente {
      * @param nombre
      *        the new nombre
      */
-    public void setNombre(String nombre) {
+    public void setNombre(final String nombre) {
         this.nombre = nombre;
     }
 
@@ -127,7 +128,7 @@ public class Cliente {
      * @param apellidos
      *        the new apellidos
      */
-    public void setApellidos(String apellidos) {
+    public void setApellidos(final String apellidos) {
         this.apellidos = apellidos;
     }
 

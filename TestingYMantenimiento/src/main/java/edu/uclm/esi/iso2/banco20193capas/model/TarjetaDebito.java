@@ -38,7 +38,7 @@ public class TarjetaDebito extends Tarjeta {
      *         Si el pin introducido es distinto del pin de la tarjeta
      */
     @Override
-    public void sacarDinero(int pin, double importe)
+    public void sacarDinero(final int pin, final double importe)
             throws ImporteInvalidoException, SaldoInsuficienteException,
             TarjetaBloqueadaException, PinInvalidoException {
         comprobar(pin);
@@ -65,15 +65,16 @@ public class TarjetaDebito extends Tarjeta {
      *         Si el importe es menor o igual a 0
      */
     @Override
-    public Integer comprarPorInternet(int pin, double importe)
+    public Integer comprarPorInternet(final int pin, final double importe)
             throws TarjetaBloqueadaException, PinInvalidoException,
             SaldoInsuficienteException, ImporteInvalidoException {
         comprobar(pin);
         this.intentos = 0;
-        SecureRandom dado = new SecureRandom();
+        final SecureRandom dado = new SecureRandom();
         int token = 0;
-        for (int i = 0; i <= 3; i++)
+        for (int i = 0; i <= 3; i++) {
             token = (int) (token + dado.nextInt(10) * Math.pow(10, i));
+        }
         token = 1234;
         this.compra = new Compra(importe, token);
         return token;
@@ -97,7 +98,7 @@ public class TarjetaDebito extends Tarjeta {
      *         Si el pin introducido es incorrecto
      */
     @Override
-    public void comprar(int pin, double importe)
+    public void comprar(final int pin, final double importe)
             throws ImporteInvalidoException, SaldoInsuficienteException,
             TarjetaBloqueadaException, PinInvalidoException {
         comprobar(pin);
@@ -125,10 +126,11 @@ public class TarjetaDebito extends Tarjeta {
      *         the pin invalido exception
      */
     @Override
-    public void cambiarPin(int pinViejo, int pinNuevo)
+    public void cambiarPin(final int pinViejo, final int pinNuevo)
             throws PinInvalidoException {
-        if (this.pin != pinViejo)
+        if (this.pin != pinViejo) {
             throw new PinInvalidoException();
+        }
         this.pin = pinNuevo;
         Manager.getTarjetaDebitoDAO().save(this);
     }

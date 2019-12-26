@@ -15,7 +15,7 @@ public class CuentaInvalidaException extends Exception {
      * @param numero
      *        the numero
      */
-    public CuentaInvalidaException(Long numero) {
+    public CuentaInvalidaException(final Long numero) {
         super("La cuenta " + numero + " no existe");
     }
 
