@@ -1,3 +1,7 @@
+/*
+ *
+ */
+
 package edu.uclm.esi.iso2.banco20193capas.dao;
 
 import java.util.List;
@@ -6,6 +10,18 @@ import org.springframework.data.repository.CrudRepository;
 
 import edu.uclm.esi.iso2.banco20193capas.model.MovimientoCuenta;
 
-public interface MovimientoCuentaDAO extends CrudRepository<MovimientoCuenta, Long>{
-	List<MovimientoCuenta> findByCuentaId(Long id);
+/**
+ * The Interface MovimientoCuentaDAO.
+ */
+public interface MovimientoCuentaDAO
+        extends CrudRepository<MovimientoCuenta, Long> {
+
+    /**
+     * Find by cuenta id.
+     *
+     * @param id
+     *        the id
+     * @return the list
+     */
+    List<MovimientoCuenta> findByCuentaId(Long id);
 }

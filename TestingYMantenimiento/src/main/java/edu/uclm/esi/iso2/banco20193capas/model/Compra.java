@@ -1,30 +1,69 @@
+/*
+ *
+ */
+
 package edu.uclm.esi.iso2.banco20193capas.model;
 
+/**
+ * The Class Compra.
+ */
 public class Compra {
 
-	private double importe;
-	private int token;
+    /** The importe. */
+    private double importe;
 
-	public Compra(double importe, int token) {
-		this.importe = importe;
-		this.token = token;
-	}
+    /** The token. */
+    private int token;
 
-	public double getImporte() {
-		return importe;
-	}
+    /**
+     * Instantiates a new compra.
+     *
+     * @param importe
+     *        the importe
+     * @param token
+     *        the token
+     */
+    public Compra(double importe, int token) {
+        this.importe = importe;
+        this.token = token;
+    }
 
-	public void setImporte(double importe) {
-		this.importe = importe;
-	}
+    /**
+     * Gets the importe.
+     *
+     * @return the importe
+     */
+    public double getImporte() {
+        return importe;
+    }
 
-	public int getToken() {
-		return token;
-	}
+    /**
+     * Sets the importe.
+     *
+     * @param importe
+     *        the new importe
+     */
+    public void setImporte(double importe) {
+        this.importe = importe;
+    }
 
-	public void setToken(int token) {
-		this.token = token;
-	}
+    /**
+     * Gets the token.
+     *
+     * @return the token
+     */
+    public int getToken() {
+        return token;
+    }
 
-	
+    /**
+     * Sets the token.
+     *
+     * @param token
+     *        the new token
+     */
+    public void setToken(int token) {
+        this.token = token;
+    }
+
 }

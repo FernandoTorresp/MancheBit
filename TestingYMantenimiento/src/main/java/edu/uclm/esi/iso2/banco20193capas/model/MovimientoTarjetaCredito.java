@@ -1,3 +1,7 @@
+/*
+ *
+ */
+
 package edu.uclm.esi.iso2.banco20193capas.model;
 
 import javax.persistence.Entity;
@@ -7,68 +11,146 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
- * Representa un movimiento asociado a una tarjeta de crédito
- *
+ * Representa un movimiento asociado a una tarjeta de crédito.
  */
 @Entity
 public class MovimientoTarjetaCredito {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO) 
-	private Long id;
-	@ManyToOne
-	private TarjetaCredito tarjeta;
-	
-	private double importe;
-	private String concepto;
-	private boolean liquidado;
-	
-	public MovimientoTarjetaCredito() {
-	}
 
-	public MovimientoTarjetaCredito(TarjetaCredito tarjeta, double importe, String concepto) {
-		this.importe = importe;
-		this.concepto = concepto;
-		this.tarjeta = tarjeta;
-	}
+    /** The id. */
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.AUTO)
+    private Long id;
 
-	public Long getId() {
-		return id;
-	}
+    /** The tarjeta. */
+    @ManyToOne
+    private TarjetaCredito tarjeta;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    /** The importe. */
+    private double importe;
 
-	public TarjetaCredito getTarjeta() {
-		return tarjeta;
-	}
+    /** The concepto. */
+    private String concepto;
 
-	public void setTarjeta(TarjetaCredito tarjeta) {
-		this.tarjeta = tarjeta;
-	}
+    /** The liquidado. */
+    private boolean liquidado;
 
-	public double getImporte() {
-		return importe;
-	}
+    /**
+     * Instantiates a new movimiento tarjeta credito.
+     */
+    public MovimientoTarjetaCredito() {
+    }
 
-	public void setImporte(double importe) {
-		this.importe = importe;
-	}
+    /**
+     * Instantiates a new movimiento tarjeta credito.
+     *
+     * @param tarjeta
+     *        the tarjeta
+     * @param importe
+     *        the importe
+     * @param concepto
+     *        the concepto
+     */
+    public MovimientoTarjetaCredito(TarjetaCredito tarjeta, double importe,
+            String concepto) {
+        this.importe = importe;
+        this.concepto = concepto;
+        this.tarjeta = tarjeta;
+    }
 
-	public String getConcepto() {
-		return concepto;
-	}
+    /**
+     * Gets the id.
+     *
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
 
-	public void setConcepto(String concepto) {
-		this.concepto = concepto;
-	}
+    /**
+     * Sets the id.
+     *
+     * @param id
+     *        the new id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public boolean isLiquidado() {
-		return liquidado;
-	}
+    /**
+     * Gets the tarjeta.
+     *
+     * @return the tarjeta
+     */
+    public TarjetaCredito getTarjeta() {
+        return tarjeta;
+    }
 
-	public void setLiquidado(boolean liquidado) {
-		this.liquidado = liquidado;
-	}
-	
-	
+    /**
+     * Sets the tarjeta.
+     *
+     * @param tarjeta
+     *        the new tarjeta
+     */
+    public void setTarjeta(TarjetaCredito tarjeta) {
+        this.tarjeta = tarjeta;
+    }
+
+    /**
+     * Gets the importe.
+     *
+     * @return the importe
+     */
+    public double getImporte() {
+        return importe;
+    }
+
+    /**
+     * Sets the importe.
+     *
+     * @param importe
+     *        the new importe
+     */
+    public void setImporte(double importe) {
+        this.importe = importe;
+    }
+
+    /**
+     * Gets the concepto.
+     *
+     * @return the concepto
+     */
+    public String getConcepto() {
+        return concepto;
+    }
+
+    /**
+     * Sets the concepto.
+     *
+     * @param concepto
+     *        the new concepto
+     */
+    public void setConcepto(String concepto) {
+        this.concepto = concepto;
+    }
+
+    /**
+     * Checks if is liquidado.
+     *
+     * @return true, if is liquidado
+     */
+    public boolean isLiquidado() {
+        return liquidado;
+    }
+
+    /**
+     * Sets the liquidado.
+     *
+     * @param liquidado
+     *        the new liquidado
+     */
+    public void setLiquidado(boolean liquidado) {
+        this.liquidado = liquidado;
+    }
+
 }
